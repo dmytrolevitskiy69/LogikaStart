@@ -1,0 +1,2 @@
+# LogikaStart
+The Githup learning!
