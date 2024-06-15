@@ -4,6 +4,8 @@ from random import randint
 
 app = QApplication([])
 my_win = QWidget()
+my_win.resize(400,250)
+my_win.move(100,100)
 
 text = QLabel("Натисніть, щоб дізнатися переможця")
 winner = QLabel("?")
