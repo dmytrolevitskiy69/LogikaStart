@@ -13,7 +13,7 @@ RadioGroupBox = QGroupBox('Варіанти відповідей') #для ра�
 RadioGroup = QButtonGroup()
 
 rbtn_1 = QRadioButton('')
-rbtn_2 = QRadioButton('')
+rbtn_2 = QRadioButton('') 
 rbtn_3 = QRadioButton('')
 rbtn_4 = QRadioButton('')
 
@@ -73,6 +73,7 @@ main_v_layout.addLayout(h_layout_1, stretch=1)
 main_v_layout.addLayout(h_layout_2, stretch=2)
 main_v_layout.addLayout(h_layout_3, stretch=8)
 main_v_layout.addStretch(1)
-main_v_layout.addLayout(h_layout_4)
+main_v_layout.addLayout(h_layout_4, stretch=1)
 main_v_layout.addStretch(1)
+# main_v_layout.setSpacing(5)
 
