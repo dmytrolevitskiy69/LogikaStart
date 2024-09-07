@@ -135,6 +135,44 @@ def add_tad():
         print(notes)
     else:
         print("Замітка для додавання тега не обрана!")
+
+def del_tag():
+    if list_notes.selectedItems():
+        key = list_notes.selectedItems()[0].text()
+        tag = list_tags.selectedItems()[0].text()
+        notes[key]['теги'].remove(tag)
+        list_tags.clear()
+        list_tags.addItems(notes[key]['теги'])
+        with open("notes_data.json", "w") as file:
+            json.dump(notes, file, sort_keys=True, ensure_ascii=False)
+    else:
+        print('Тег для видалення не вибраний!')
+
+def search_tag():
+    print(button_tag_search.text())
+    tag = field_tag.text()
+    if button_tag_search.text() == 'Шукати замітки по тегу' and tag:
+        print(tag)
+        notes_fileread ={}
+        for note in notes:
+            if tag in notes[note]['теги']:
+                notes_fileread[note]=notes[note]
+        button_tag_search.setText("Скинути результати пошуку")
+        list_notes.clear()
+        list_tags.clear()
+        list_notes.addItems(notes_fileread)
+        print(button_tag_search.text())
+    elif button_tag_search.text() == 'Скинути результати пошуку':
+            field_tag.clear()
+            list_notes.clear()
+            list_tags.clear()
+            list_notes.addItems(notes) 
+            button_tag_search.setText('Шукати замітки по тегу')
+            print(button_tag_search.text())
+    else:
+        pass
+
+        
          
 '''Запуск програми'''
 # підключення обробки подій
@@ -143,6 +181,8 @@ button_note_create.clicked.connect(add_note)
 button_note_save.clicked.connect(save_note)
 button_note_del.clicked.connect(del_note)
 button_tag_add.clicked.connect(add_tad)
+button_tag_del.clicked.connect(del_tag)
+button_tag_search.clicked.connect(search_tag)
 
 
     # запуск програми
