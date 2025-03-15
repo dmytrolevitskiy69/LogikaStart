@@ -22,6 +22,8 @@ class InstrScr(Screen):
         self.btn=Button(text="Почати",size_hint=(0.3,0.15),pos_hint={'center_x': 0.5, ' top': 0.3})
         self.btn.on_press=self.next
         
+        
+        
         layout.add_widget(instr)
         layout.add_widget(lbl1)
         layout.add_widget(lbl2)
@@ -36,8 +38,28 @@ class InstrScr(Screen):
         age = self.in_age.text
         print(age)
         print(name)
-        #self.manager.current="pulse1"
+        self.manager.current="pulse1"
         
+class PulseScr(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        layout = FloatLayout()
+        instr = Label(text=txt_test1,size_hint=(0.9, 0.2), pos_hint={'center_x': 0.5, 'top': 0.9})
+        lbl_result = Label(text="Введіть результат", size_hint=(0.3,0.1), pos_hint={'x':0.1, 'top': 0.45})
+        self.in_result=TextInput(multiline=False,size_hint=(0.4,0.1),pos_hint={'x': 0.4, 'top': 0.5})
+        self.btn=Button(text="Продовжити",size_hint=(0.3,0.15),pos_hint={'center_x': 0.5, ' top': 0.3})
+        self.btn.on_press=self.next
+        
+        
+        layout.add_widget(instr)
+        layout.add_widget(lbl_result)
+        layout.add_widget(self.in_result)
+        layout.add_widget(self.btn)
+        self.add_widget(layout)
+    def next(self):
+        global p1
+        p1=int(self.in_result.text)
+        #self.manager.current="sits"
         
 
 
@@ -45,7 +67,7 @@ class HeartCheck(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(InstrScr(name="instr")) #1 екран
-        #sm.add_widget(PulseScr(name="pulse1")) #2 екран
+        sm.add_widget(PulseScr(name="pulse1")) #2 екран
         #sm.add_widget(CheckSits(name="sits")) #3 екран
         #sm.add_widget(PulseScr2(name="pulse2")) #4 екран
         #sm.add_widget(Result(name="result")) #5 екран
